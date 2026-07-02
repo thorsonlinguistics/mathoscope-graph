@@ -51,7 +51,7 @@ Below are some sample queries for examining the database.
 
 ### Count terms 
 
-```
+```cypher
 MATCH (n:Term) RETURN COUNT(n);
 ```
 
@@ -59,7 +59,7 @@ This currently returns 6842.
 
 ### Count relationships
 
-```
+```cypher
 MATCH ()-[r:RELATED_TO]->() RETURN COUNT(r);
 ```
 
@@ -70,7 +70,7 @@ This currently returns 8740.
 This will include only the basic terms from MathGloss, not the extrapolated
 Wikidata concepts.
 
-```
+```cypher
 MATCH (n:Term) WHERE n.is_base = true RETURN n.wikidata_label;
 ```
 
@@ -81,6 +81,6 @@ There are currently 3,992 base terms and 2,850 extrapolated terms.
 This will display the graph of all nodes immediately related to a particular
 target, in this case "axiom of choice".
 
-```
+```cypher
 MATCH p=(n:Term {wikidata_label: "function"})-[:RELATED_TO]->(m) RETURN p;
 ```
