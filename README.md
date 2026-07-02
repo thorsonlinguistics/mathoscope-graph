@@ -84,3 +84,5 @@ target, in this case "axiom of choice".
 ```cypher
 MATCH p=(n:Term {wikidata_label: "function"})-[:RELATED_TO]->(m) RETURN p;
 ```
+
+![Results of the above query](relations.png)
