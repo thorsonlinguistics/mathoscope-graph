@@ -47,4 +47,40 @@ Once Neo4j desktop is installed, follow the graphical method below.
 
 ## 3. Sample Queries
 
+Below are some sample queries for examining the database.
 
+### Count terms 
+
+```
+MATCH (n:Term) RETURN COUNT(n);
+```
+
+This currently returns 6842.
+
+### Count relationships
+
+```
+MATCH ()-[r:RELATED_TO]->() RETURN COUNT(r);
+```
+
+This currently returns 8740.
+
+### List original MathGloss terms
+
+This will include only the basic terms from MathGloss, not the extrapolated
+Wikidata concepts.
+
+```
+MATCH (n:Term) WHERE n.is_base = true RETURN n.wikidata_label;
+```
+
+There are currently 3,992 base terms and 2,850 extrapolated terms.
+
+### Display graph of related nodes
+
+This will display the graph of all nodes immediately related to a particular
+target, in this case "axiom of choice".
+
+```
+MATCH p=(n:Term {wikidata_label: "function"})-[:RELATED_TO]->(m) RETURN p;
+```
